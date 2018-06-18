@@ -1,0 +1,344 @@
+﻿<Window x:Name="KeyboardTrainer" x:Class="KeyboardSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyboardSimulator"
+        mc:Ignorable="d"
+        Title="Keyboard Trainer" MinHeight="420" MinWidth="650" Height="420" Width="650" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="buttonStyle">
+            <Style.Setters>
+                <Setter Property="Button.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="LightGray" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                                <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Button.Background" Value="LightGray"/>
+                <Setter Property="Button.FontFamily" Value="Verdana"/>
+                <Setter Property="Button.Foreground" Value="Black"/>
+                <Setter Property="Button.FontSize" Value="20"/>
+                <Setter Property="Button.FontWeight" Value="Bold"/>
+                <Setter Property="Button.Cursor" Value="Hand"/>
+                <Setter Property="Button.Margin" Value="2"/>
+                <Setter Property="Button.Padding" Value="7 0 5 0"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Foreground" Value="Red" />
+                </Trigger>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="Button.Foreground" Value="Green"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="smollText" BasedOn="{StaticResource buttonStyle}">
+            <Style.Setters>
+                <Setter Property="Button.FontSize" Value="13"/>
+                <Setter Property="Button.FontWeight" Value="Normal"/>
+                <Setter Property="Button.Padding" Value="0 5 0 5"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="hotPink" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="hotPink" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="mediumOrchid" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="MediumOrchid" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="sandyBrown" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="sandyBrown" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="springGreen" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="springGreen" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="aquamarine" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Aquamarine" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="olive" BasedOn="{StaticResource smollText}">
+            <Setter Property="Button.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="DarkKhaki" CornerRadius="8" BorderBrush="Black" BorderThickness="1" Padding="100 4">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="Keyboard_Trainer">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- панель управления -->
+        <Grid Grid.Row="0" Margin="5,5,1,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <TextBlock x:Name="speed" HorizontalAlignment="Left" Margin="11,-2,0,0" Text="Speed: " VerticalAlignment="Center"/>
+                <TextBlock x:Name="count" HorizontalAlignment="Left" Margin="11,-2,0,0" Text="0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="chars" HorizontalAlignment="Left" Margin="11,2,0,4" Text="chars/min" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock  x:Name="fails" HorizontalAlignment="Left" Margin="11,-2,0,0" Text="All/Correct/Fails: " VerticalAlignment="Center"/>
+                <TextBlock  x:Name="failsCount" HorizontalAlignment="Left" Margin="11,-2,0,0" Text="0/0/0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                <TextBlock  x:Name="difficulte" HorizontalAlignment="Left" Margin="11,-2,0,0" Text="Failsdifficulte: " VerticalAlignment="Center"/>
+                <TextBlock  x:Name="difficulteCount" HorizontalAlignment="Left" Margin="5,0,5,0" Text="10" VerticalAlignment="Center"/>
+                <Slider x:Name="slider" Minimum="10" Maximum="50" Orientation="Horizontal" SelectionStart="10" Width="40" Margin="10 0 10 0" ValueChanged="Slider_ValueChanged" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                <CheckBox x:Name="checkBox" Content="Case Sensitive" Margin="10 0 10 0" IsChecked="False" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Button  Grid.Row="1" Grid.Column="2" Content="Start" Name="start" Margin="5 0 5 0" Style="{x:Null}" FontSize="12" Background="GreenYellow" Click="Button_Click_Start" Cursor="Hand"></Button>
+            <Button  Grid.Row="1" Grid.Column="3" Content="Stop" Name="stop" Margin="5 0 5 0" Style="{x:Null}" FontSize="12" Background="Red" IsEnabled="False" Height="20" VerticalAlignment="Top" Click="Button_Click_Stop" Cursor="Hand"></Button>
+            <TextBlock Grid.Row="1" x:Name="timeBox" HorizontalAlignment="Center" Margin="0" Text="Time: 0" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- строка набора -->
+        <Grid Grid.Row="1" Background="Aquamarine" Margin="2" Grid.ColumnSpan="2">
+            <TextBox Name="textbox"  TextWrapping="Wrap" TextDecorations="None" FontSize="13" Foreground="Black" FontWeight="Normal" Background="Aquamarine" Padding="1" IsReadOnly="True" MinLines="1" MaxLines="4"/>
+            
+        </Grid>
+        <Grid Grid.Row="2" Background="Aqua" Margin="2" Grid.ColumnSpan="2">
+            <TextBox Name="textbox2"  TextWrapping="Wrap" TextDecorations="None" FontSize="13" Foreground="Black" FontWeight="Normal" Background="Aquamarine" Padding="1" MinLines="1"  MaxLines="4" TextChanged="textblock2_TextChanged" KeyDown="TextBox_KeyDown" KeyUp="TextBox_KeyUp" PreviewKeyDown="textbox2_PreviewKeyDown" IsEnabled="False"/>
+
+        </Grid>
+        <!-- панель клавиатуры -->
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <!-- первая строка клавиш -->
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="r0_c0" Content="`" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="1" Name="r0_c1" Content="1" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="2" Name="r0_c2" Content="2" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="3" Name="r0_c3" Content="3" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="4" Name="r0_c4" Content="4" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="5" Name="r0_c5" Content="5" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="6" Name="r0_c6" Content="6" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="7" Name="r0_c7" Content="7" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="8" Name="r0_c8" Content="8" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="9" Name="r0_c9" Content="9" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="10" Name="r0_c10" Content="0" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="11" Name="r0_c11" Content="-" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="12" Name="r0_c12" Content="=" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="13" Name="backspase" Content="Backspace" Style="{StaticResource smollText}"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <!-- вторая строка клавиш -->
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="tab" Content="Tab" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="1" Name="r1_c1" Content="q" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="2" Name="r1_c2" Content="w" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="3" Name="r1_c3" Content="e" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="4" Name="r1_c4" Content="r" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="5" Name="r1_c5" Content="t" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="6" Name="r1_c6" Content="y" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="7" Name="r1_c7" Content="u" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="8" Name="r1_c8" Content="i" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="9" Name="r1_c9" Content="o" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="10" Name="r1_c10" Content="p" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="11" Name="r1_c11" Content="[" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="12" Name="r1_c12" Content="]" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="13" Name="r1_c13" Content="\" Style="{StaticResource springGreen}"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <!-- третья строка клавиш -->
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.7*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.7*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="capsLock" Content="CapsLock"  Style="{StaticResource smollText}"/>
+                <Button Grid.Column="1" Name="r2_c1" Content="a" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="2" Name="r2_c2" Content="s" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="3" Name="r2_c3" Content="d" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="4" Name="r2_c4" Content="f" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="5" Name="r2_c5" Content="g" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="6" Name="r2_c6" Content="h" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="7" Name="r2_c7" Content="j" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="8" Name="r2_c8" Content="k" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="9" Name="r2_c9" Content="l" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="10" Name="r2_c10" Content=";" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="11" Name="r2_c11" Content="'" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="12" Name="enter" Content="Enter" Style="{StaticResource smollText}"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <!-- четвертая строка клавиш -->
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="shiftLeft" Content="Shift" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="1" Name="r3_c1" Content="z" Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="2" Name="r3_c2" Content="x" Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="3" Name="r3_c3" Content="c" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="4" Name="r3_c4" Content="v" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="5" Name="r3_c5" Content="b" Style="{StaticResource aquamarine}"/>
+                <Button Grid.Column="6" Name="r3_c6" Content="n" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="7" Name="r3_c7" Content="m" Style="{StaticResource mediumOrchid}"/>
+                <Button Grid.Column="8" Name="r3_c8" Content="," Style="{StaticResource hotPink}"/>
+                <Button Grid.Column="9" Name="r3_c9" Content="." Style="{StaticResource sandyBrown}"/>
+                <Button Grid.Column="10" Name="r3_c10" Content="/" Style="{StaticResource springGreen}"/>
+                <Button Grid.Column="11" Name="shiftRight" Content="Shift" Style="{StaticResource smollText}"/>
+            </Grid>
+            <Grid Grid.Row="4" Name="rowFive">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="ctrlLeft" Content="Ctrl" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="1" Name="winLeft" Content="Win" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="2" Name="altLeft" Content="Alt" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="3" Name="spase" Content="Space" Style="{StaticResource olive}"/>
+                <Button Grid.Column="4" Name="altRight" Content="Alt" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="5" Name="winRight" Content="Win" Style="{StaticResource smollText}"/>
+                <Button Grid.Column="6" Name="ctrlRight" Content="Strl" Style="{StaticResource smollText}"/>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>
